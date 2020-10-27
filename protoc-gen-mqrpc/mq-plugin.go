@@ -49,7 +49,7 @@ func (p *mqrpc) Generate(file *generator.FileDescriptor) {
 		p.P(`}`)
 
 		p.P(`// Run server API with this call`)
-		p.P(`func RunServer(srv github_com_gavrilaf_amqp_rpc.Server, handler `, serverInterfaceName, `) {`)
+		p.P(`func RunServer(srv github_com_003random_amqp_rpc.Server, handler `, serverInterfaceName, `) {`)
 		p.In()
 		p.P(`srv.Serve(func(funcID int32, arg []byte) ([]byte, error) {`)
 		p.In()
@@ -84,7 +84,7 @@ func (p *mqrpc) Generate(file *generator.FileDescriptor) {
 		p.Out()
 		p.P(`}`)
 
-		p.P(`func New`, clientInterfaceName, `(cc github_com_gavrilaf_amqp_rpc.Client)`, clientInterfaceName, `{`)
+		p.P(`func New`, clientInterfaceName, `(cc github_com_003random_amqp_rpc.Client)`, clientInterfaceName, `{`)
 		p.In()
 		p.P(`return &`, unexport(clientInterfaceName), `{cc}`)
 		p.Out()
@@ -92,7 +92,7 @@ func (p *mqrpc) Generate(file *generator.FileDescriptor) {
 
 		p.P(`type `, unexport(clientInterfaceName), ` struct {`)
 		p.In()
-		p.P(`cc github_com_gavrilaf_amqp_rpc.Client`)
+		p.P(`cc github_com_003random_amqp_rpc.Client`)
 		p.Out()
 		p.P(`}`)
 
@@ -140,7 +140,7 @@ func (p *mqrpc) Generate(file *generator.FileDescriptor) {
 			p.In()
 			p.P(`request, err := arg.Marshal()`)
 			p.printErr()
-			p.P(`respData, err := this.cc.RemoteCall(github_com_gavrilaf_amqp_rpc.Request{FuncID: Functions_`, methodName, `, Body: request})`)
+			p.P(`respData, err := this.cc.RemoteCall(github_com_003random_amqp_rpc.Request{FuncID: Functions_`, methodName, `, Body: request})`)
 			p.printErr()
 
 			p.P(`var resp `, retType)
