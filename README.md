@@ -7,7 +7,7 @@ Install the gogo golang protobuf implementation from https://github.com/gogo/pro
 
 Install mq-rpc binary:
 
-`go get github.com/gavrilaf/amqp/protoc-gen-mqrpc`
+`go get github.com/003random/amqp/protoc-gen-mqrpc`
 
 # Run example
 

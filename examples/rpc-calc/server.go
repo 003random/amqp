@@ -3,7 +3,8 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/gavrilaf/amqp/rpc"
+
+	"github.com/003random/amqp/rpc"
 )
 
 func failOnError(err error, msg string) {

@@ -2,12 +2,13 @@ package test
 
 import (
 	"errors"
-	"github.com/gavrilaf/amqp/rpc"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 	"sync"
 	"testing"
 	"time"
+
+	"github.com/003random/amqp/rpc"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 var errTest = errors.New("testErr")

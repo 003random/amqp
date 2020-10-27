@@ -15,7 +15,7 @@ package main
 
 import fmt "fmt"
 import errors "errors"
-import rpc "github.com/gavrilaf/amqp/rpc"
+import rpc "github.com/003random/amqp/rpc"
 import proto "github.com/gogo/protobuf/proto"
 import math "math"
 import _ "github.com/gogo/protobuf/gogoproto"

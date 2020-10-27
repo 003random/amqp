@@ -3,9 +3,10 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/gavrilaf/amqp/rpc"
-	"github.com/satori/go.uuid"
 	"time"
+
+	"github.com/003random/amqp/rpc"
+	uuid "github.com/satori/go.uuid"
 )
 
 func failOnError(err error, msg string) {

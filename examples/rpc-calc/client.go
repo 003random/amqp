@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/gavrilaf/amqp/rpc"
 	"sync"
 	"time"
+
+	"github.com/003random/amqp/rpc"
 )
 
 func failOnError(err error, msg string) {
