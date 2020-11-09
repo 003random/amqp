@@ -2,16 +2,20 @@ package rpc
 
 import (
 	"fmt"
+
 	"github.com/streadway/amqp"
 )
 
+// CallHandler handles all RPC calls
 type CallHandler func(funcID int32, args []byte) ([]byte, error)
 
+// Server is the main server object
 type Server interface {
 	Close()
 	Serve(handler CallHandler)
 }
 
+// CreateServer creates a worker/server
 func CreateServer(url string, queueName string) (Server, error) {
 	conn, err := amqp.Dial(url)
 	if err != nil {

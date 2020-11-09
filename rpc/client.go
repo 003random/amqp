@@ -10,21 +10,25 @@ import (
 	"github.com/streadway/amqp"
 )
 
+// ErrTimeout represents the timeout error variable
 var ErrTimeout = errors.New("timeout")
 
+// Client is a client object
 type Client interface {
 	Close()
 	RemoteCall(p Request) ([]byte, error)
 }
 
+// ClientConfig holds the configuration for the client
 type ClientConfig struct {
-	Url         string
+	URL         string
 	ServerQueue string
 	Timeout     time.Duration
 }
 
+// Connect connects to the RabbitMQ exchange server
 func Connect(cfg ClientConfig) (Client, error) {
-	conn, err := amqp.Dial(cfg.Url)
+	conn, err := amqp.Dial(cfg.URL)
 	if err != nil {
 		return nil, err
 	}
