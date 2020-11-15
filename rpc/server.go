@@ -122,19 +122,26 @@ func (srv *serverImpl) callHandler(handler CallHandler, msg amqp.Delivery) {
 		panic(fmt.Sprintf("Failed marshall responce: %v", err))
 	}
 
-	err = srv.channel.Publish(
-		"",          // exchange
-		msg.ReplyTo, // routing key
-		false,       // mandatory
-		false,       // immediate
-		amqp.Publishing{
-			ContentType:   "application/octet-stream",
-			CorrelationId: msg.CorrelationId,
-			Body:          respData,
-		})
+	retries := 0
+	for {
+		err = srv.channel.Publish(
+			"",          // exchange
+			msg.ReplyTo, // routing key
+			false,       // mandatory
+			false,       // immediate
+			amqp.Publishing{
+				ContentType:   "application/octet-stream",
+				CorrelationId: msg.CorrelationId,
+				Body:          respData,
+			})
 
-	if err != nil {
-		panic(fmt.Sprintf("Failed to publish a message: %v", err))
+		if err == nil {
+			break
+		}
+		if retries == 4 {
+			panic(fmt.Sprintf("Failed to publish a message: %v", err))
+		}
+		retries++
 	}
 
 	msg.Ack(false)
